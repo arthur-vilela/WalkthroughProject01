@@ -37,6 +37,10 @@ def resize_input_image(img, version):
     """
     Reshape image to average image size
     """
+    # Convert to RGB if image has alpha channel
+    if img.mode == 'RGBA':
+        img = img.convert('RGB')
+
     image_shape = load_pkl_file(file_path=f"outputs/{version}/image_shape.pkl")
     img_resized = img.resize((image_shape[1], image_shape[0]), Image.LANCZOS)
     my_image = np.expand_dims(img_resized, axis=0)/255
@@ -50,6 +54,10 @@ def load_model_and_predict(my_image, version):
     """
 
     model = load_model(f"outputs/{version}/malaria_detector_model.h5")
+
+    # Double-check the image has 3 channels
+    if my_image.shape[-1] != 3:
+        my_image = my_image[..., :3]  # Take only first 3 channels if more exist
 
     pred_proba = model.predict(my_image)[0, 0]
 
