@@ -1,37 +1,17 @@
-# Data and model files
-*.csv
-*.tsv
-*.xlsx
-*.zip
-*.tar
-*.gz
-*.pkl
-*.joblib
-*.h5
-*.pt
-*.onnx
+# Safe to ignore
 data/
-datasets/
-models/
-
-# Jupyter notebooks
+notebooks/
+*.csv
+*.xlsx
 *.ipynb
-.ipynb_checkpoints/
-
-# Virtual environments
-env/
-venv/
-.venv/
-
-# Python cache
 __pycache__/
-*.pyc
-*.pyo
-
-# Logs and temp files
 *.log
 *.tmp
+models/
+venv/
+env/
+.venv/
 
-# Git-related
-.git/
-.gitignore
+# Do NOT ignore:
+# outputs/v1/malaria_detector_model.h5
+# outputs/v1/image_shape.pkl
